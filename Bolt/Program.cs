@@ -42,7 +42,7 @@ namespace Bolt
 
             
             ConsoleKeyInfo lenyomott;
-
+            
             do
             {
                 Console.Clear();
@@ -62,9 +62,10 @@ namespace Bolt
                 }
 
                 lenyomott = Console.ReadKey();
+                
                 switch (lenyomott.Key) 
                 {
-                    case ConsoleKey.UpArrow: if(kivalasztott_opcio > 0) kivalasztott_opcio--; break;
+                    case ConsoleKey.UpArrow: if(kivalasztott_opcio > 0) kivalasztott_opcio--; if (kivalasztott_opcio == 0) kivalasztott_opcio = 5; if (kivalasztott_opcio == 5) kivalasztott_opcio--; break; 
                     case ConsoleKey.DownArrow: if(kivalasztott_opcio < menupontok.Length - 1) kivalasztott_opcio++; break;
                 }
             } while (lenyomott.Key != ConsoleKey.Escape);
