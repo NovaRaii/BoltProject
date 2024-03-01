@@ -1,8 +1,8 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,25 +34,6 @@ namespace Bolt
         }
 
 
-        static void Menu()
-        {
-            return;
-        }
-        class Eszkozok
-        {
-            private string nev;
-            private int ar;
-            private int mennyiseg;
-            private string parameterek;
-
-            public Eszkozok(string nev, int ar, int mennyiseg, string parameterek)
-            {
-                this.nev = nev;
-                this.ar = ar;
-                this.mennyiseg = mennyiseg;
-                this.parameterek = parameterek;
-            }
-        }
         static int kivalasztott_opcio = 0;
 
         static void Menu()
@@ -113,8 +94,8 @@ namespace Bolt
                 Adatok.Add(eszkoz);
             }
             sr.Close();
-            
-        
+
+            Menu();
         }
     }
 }
