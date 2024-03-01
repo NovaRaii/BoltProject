@@ -1,30 +1,30 @@
-Laptop;384000;15;Intel i7, 16GB RAM, 512GB SSD
-Monitor;96000;25;24" Full HD, IPS panel
-Grafikus tablet;64000;8;10" aktív érintőképernyő, 8192 nyomásérzékenység
-Billentyűzet;16000;40;Vezetékes, háttérvilágítás, USB csatlakozás
-Egér;9600;50;Optikai szenzor, 6 gomb, vezetékes
-Fejhallgató;32000;20;Vezetékes, 7.1 surround hangzás, mikrofonnal
-Nyomtató;48000;12;Lézeres, színes, vezeték nélküli
-Router;25600;30;Dual-band, 4 Ethernet port, AC1200 sebesség
-Számítógép alkatrész;22400;60;DDR4 RAM, 8GB
-SSD meghajtó;32000;18;500GB kapacitás, SATA 3 csatlakozó
-Webkamera;12800;35;Full HD felbontás, beépített mikrofon
-Mobiltelefon;224000;10;6.5" OLED kijelző, 128GB tárhely, 5G támogatás
-Hangfal;25600;22;Bluetooth kapcsolat, 20W teljesítmény
-Videokártya;160000;7;NVIDIA RTX 3060, 12GB GDDR6 memória
-Tápegység;19200;45;600W teljesítmény, 80 Plus Bronze minősítés
-Hálózati adapter;6400;60;1000Mbps sebesség, plug-and-play
-Memóriakártya;8000;50;MicroSD, 64GB kapacitás, UHS-I sebességosztály
-Merevlemez;25600;28;2TB kapacitás, 7200 RPM, SATA 6Gb/s
-Processzor;96000;15;Intel Core i9-9900K, 8 mag, 16 szál, 3.6GHz órajel
-Grafikus kártya;224000;10;AMD Radeon RX 6800 XT, 16GB GDDR6 memória
-Hálózati switch;32000;10;16 port, Gigabit sebesség, rackbe szerelhető
-Bluetooth adapter;4800;30;USB csatlakozás, Bluetooth 5.0
-Külső merevlemez;38400;25;4TB kapacitás, USB 3.2 csatlakozás
-Webkamera takaró;1600;50;Fekete, műanyag, univerzális méret
-Hangkártya adapter;6400;15;USB csatlakozás, 3.5mm jack kimenetek
-Memória modul;25600;25;DDR4, 16GB, 3200MHz órajel
-Kábelkezelő táska;320;40;Fekete, 30cm hosszú, tépőzáras
-Merevlemez dokkoló;12800;20;USB 3.1 csatlakozás, 2.5"/3.5" SATA HDD/SSD
-USB hub;8000;30;7 port, USB 3.0, töltőfunkcióval
-Hűtőpaszta;2560;50;Arctic MX-4, 4g mennyiség, kiváló hővezető képesség
+Laptop;384000;15;Intel i7, 16GB RAM, 512GB SSD;nem
+Monitor;96000;25;24" Full HD, IPS panel;nem
+Grafikus tablet;64000;8;10" aktív érintőképernyő, 8192 nyomásérzékenység;igen
+Billentyűzet;16000;40;Vezetékes, háttérvilágítás, USB csatlakozás;nem
+Egér;9600;50;Optikai szenzor, 6 gomb, vezetékes;nem
+Fejhallgató;32000;20;Vezetékes, 7.1 surround hangzás, mikrofonnal;nem
+Nyomtató;48000;12;Lézeres, színes, vezeték nélküli;nem
+Router;25600;30;Dual-band, 4 Ethernet port, AC1200 sebesség;nem
+Számítógép alkatrész;22400;60;DDR4 RAM, 8GB;nem
+SSD meghajtó;32000;18;500GB kapacitás, SATA 3 csatlakozó;nem
+Webkamera;12800;35;Full HD felbontás, beépített mikrofon;nem
+Mobiltelefon;224000;10;6.5" OLED kijelző, 128GB tárhely, 5G támogatás;igen
+Hangfal;25600;22;Bluetooth kapcsolat, 20W teljesítmény;nem
+Videokártya;160000;7;NVIDIA RTX 3060, 12GB GDDR6 memória;igen
+Tápegység;19200;45;600W teljesítmény, 80 Plus Bronze minősítés;nem
+Hálózati adapter;6400;60;1000Mbps sebesség, plug-and-play;nem
+Memóriakártya;8000;50;MicroSD, 64GB kapacitás, UHS-I sebességosztály;nem
+Merevlemez;25600;28;2TB kapacitás, 7200 RPM, SATA 6Gb/s;nem
+Processzor;96000;15;Intel Core i9-9900K, 8 mag, 16 szál, 3.6GHz órajel;igen
+Grafikus kártya;224000;10;AMD Radeon RX 6800 XT, 16GB GDDR6 memória;igen
+Hálózati switch;32000;10;16 port, Gigabit sebesség, rackbe szerelhető;nem
+Bluetooth adapter;4800;30;USB csatlakozás, Bluetooth 5.0;nem
+Külső merevlemez;38400;25;4TB kapacitás, USB 3.2 csatlakozás;nem
+Webkamera takaró;1600;50;Fekete, műanyag, univerzális méret;nem
+Hangkártya adapter;6400;15;USB csatlakozás, 3.5mm jack kimenetek;nem
+Memória modul;25600;25;DDR4, 16GB, 3200MHz órajel;nem
+Kábelkezelő táska;320;40;Fekete, 30cm hosszú, tépőzáras;nem
+Merevlemez dokkoló;12800;20;USB 3.1 csatlakozás, 2.5"/3.5" SATA HDD/SSD;nem
+USB hub;8000;30;7 port, USB 3.0, töltőfunkcióval;nem
+Hűtőpaszta;2560;50;Arctic MX-4, 4g mennyiség, kiváló hővezető képesség;nem
