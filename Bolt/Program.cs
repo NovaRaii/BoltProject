@@ -92,42 +92,42 @@ namespace Bolt
             Adatok.Add(eszkot);
         }
 
-        static string TermekTorlese()
+        static string TermekIDtKeres(string muvelet)
         {
             
             char valasztas = 'h';
             do
             {
                 Console.Clear();
-                int torlendoID = int.MaxValue;
-                Console.Write("Írja be hogy melyik id-jű elemet akarja törölni (kilépés - k): ");
+                int ID = int.MaxValue;
+                Console.Write($"Írja be hogy melyik id-jű elemet akarja {muvelet} (kilépés - k): ");
                 try
                 {
-                    torlendoID = Convert.ToInt16(Console.ReadLine());
+                    ID = Convert.ToInt16(Console.ReadLine());
                 } catch
                 {
                     return null;
                 }
                 
-                if (torlendoID == 10101010)
+                if (ID == 10101010)
                 {
-                    Adatok.Remove(Adatok[Adatok.Count - 1]);
+                    return Convert.ToString(Adatok.Count - 1);
                 }
                 else
                 {
                     for (int i = 0; i < Adatok.Count; i++)
                     {
-                        if (torlendoID == Adatok[i].getId())
+                        if (ID == Adatok[i].getId())
                         {
                             Adatok[i].kiir();
-                            Console.WriteLine("Ezt az elemet akarja törölni?\n(i/n)");
+                            Console.WriteLine($"Ezt az elemet akarja {muvelet}?\n(i/n)");
                             valasztas = Convert.ToChar(Console.ReadLine());
                             if (valasztas == 'k')
                             {
                                 return null;
                             } else if (valasztas == 'i')
                             {
-                                Adatok.Remove(Adatok[i]);
+                                return Convert.ToString(ID);
                             }
                         }
                     }
@@ -136,9 +136,67 @@ namespace Bolt
             return null;
         }
 
+        static string TermekTorlese()
+        {
+            string torlendoIDStrig = TermekIDtKeres("törölni");
+            if (torlendoIDStrig != null)
+            {
+                int torlendoID = Convert.ToInt16(torlendoIDStrig);
+                Adatok.Remove(Adatok[torlendoID]);
+                return null;
+            } else
+            {
+                return null;
+            }
+        }
+
+        static string TermekModositsa()
+        {
+            Console.Clear();
+            string modositandoIDStrig = TermekIDtKeres("módosítani");
+            if (modositandoIDStrig != null)
+            {
+                int modositandoID = Convert.ToInt16(modositandoIDStrig);
+                string[] opcio = { "nev", "leirás", "darabszám", "ár", "elavuló-e" };
+                ConsoleKeyInfo lenyomott;
+                int kivalasztott = 0;
+                do
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Adatok[modositandoID].kiir();
+                    Console.WriteLine("Mit akar módosítani a kiválaszott elemen?");
+                    for (int i = 0; i < opcio.Length; i++)
+                    {
+                        if (kivalasztott == i)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(opcio[i]);
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write(opcio[i]);
+                        }
+                    }
+                    lenyomott = Console.ReadKey();
+                    if (lenyomott = )
+                    {
+
+                    }
+
+                } while (lenyomott.Key != ConsoleKey.Enter);
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         static void Menu()
         {
-            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "File-ba írás", };
+            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "File-ba írás" };
 
             
             ConsoleKeyInfo lenyomott;
@@ -180,8 +238,8 @@ namespace Bolt
                         case 0: KeszletKilistazasa(); break;
                         case 1: TermekHozzaadasa(); break;
                         case 2: TermekTorlese(); break;
-                            /*case 4: TermekModositsa(); break;
-                            case 5: Fileba(); break;*/
+                        case 3: TermekModositsa(); break;
+                        //case 5: Fileba(); break;
                     }
                 }
                 
