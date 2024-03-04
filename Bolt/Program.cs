@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Bolt
 {
@@ -28,6 +29,11 @@ namespace Bolt
 
             }
 
+            public void kiir()
+            {
+                Console.WriteLine($"{this.id} {this.nev} ({this.parameterek}) {this.ar} Ft {this.mennyiseg} db raktáron");
+            }
+
             public int setId(int id) => this.id = id; public int getId() => this.id;
 
         }
@@ -38,37 +44,101 @@ namespace Bolt
 
         public static void KeszletKilistazasa()
         {
+            Console.Clear();
             for (int i = 0; i < Adatok.Count; i++)
             {
-                Console.WriteLine($"...");
+                Adatok[i].kiir();
             }
+            Console.ReadKey();
         }
 
         public static void TermekHozzaadasa()
         {
             Console.Clear();
-            Console.WriteLine("Termék hozzáadása:\n Írja be a termék paramétereit:");
-            Console.Write("A termék neve:");
+            Console.WriteLine("Termék hozzáadása\nÍrja be a termék paramétereit:");
+            Console.Write(" A termék neve:");
             string termekNeve = Console.ReadLine();
-            Console.Write("A termék ára:");
+            Console.Write(" A termék ára:");
             int termekAra = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Az árusítani kívánt mennyiség:");
+            Console.Write(" Az árusítani kívánt mennyiség:");
             int mennyiseg = Convert.ToInt16(Console.ReadLine());
-            Console.Write("Egyéb paraméterek, leírás:");
+            Console.Write(" Egyéb paraméterek, leírás:");
             string leiras = Console.ReadLine();
-            Console.Write("Elavuló a termék (i/n):");
-            char elavuloBe = Convert.ToChar(Console.ReadLine());
+            bool jo = false;
             bool elavulo = false;
-            if (elavuloBe == 'i')
+            do
             {
-                elavulo = true;
-            }
+
+                Console.Write("Elavuló a termék (i/n):");
+                char elavuloBe = Convert.ToChar(Console.ReadLine());
+                if (elavuloBe == 'i')
+                {
+                    elavulo = true;
+                    jo = true;
+                }
+                else if (elavuloBe == 'n')
+                {
+                    elavulo = false;
+                    jo = true;
+                }
+                else
+                {
+                    Console.WriteLine("Hiba! Kérem a két jelzett opció közül válasszon!");
+                }
+            } while (!jo);
+            int id = Adatok[Adatok.Count-1].getId()+1;
             Eszkozok eszkot = new Eszkozok(termekNeve, termekAra, mennyiseg, leiras, elavulo);
+            eszkot.setId(id);
+            Adatok.Add(eszkot);
+        }
+
+        static string TermekTorlese()
+        {
+            
+            char valasztas = 'h';
+            do
+            {
+                Console.Clear();
+                int torlendoID = int.MaxValue;
+                Console.Write("Írja be hogy melyik id-jű elemet akarja törölni (kilépés - k): ");
+                try
+                {
+                    torlendoID = Convert.ToInt16(Console.ReadLine());
+                } catch
+                {
+                    return null;
+                }
+                
+                if (torlendoID == 10101010)
+                {
+                    Adatok.Remove(Adatok[Adatok.Count - 1]);
+                }
+                else
+                {
+                    for (int i = 0; i < Adatok.Count; i++)
+                    {
+                        if (torlendoID == Adatok[i].getId())
+                        {
+                            Adatok[i].kiir();
+                            Console.WriteLine("Ezt az elemet akarja törölni?\n(i/n)");
+                            valasztas = Convert.ToChar(Console.ReadLine());
+                            if (valasztas == 'k')
+                            {
+                                return null;
+                            } else if (valasztas == 'i')
+                            {
+                                Adatok.Remove(Adatok[i]);
+                            }
+                        }
+                    }
+                }
+            } while (valasztas != 'i');
+            return null;
         }
 
         static void Menu()
         {
-            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "File-ba írás" };
+            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "File-ba írás", };
 
             
             ConsoleKeyInfo lenyomott;
@@ -92,6 +162,7 @@ namespace Bolt
                         }
                         Console.WriteLine(i + 1 + ")" + menupontok[i]);
                     }
+                    Console.WriteLine("(Kilépés - Esc)");
 
                     lenyomott = Console.ReadKey();
                     switch (lenyomott.Key)
@@ -100,24 +171,27 @@ namespace Bolt
                         case ConsoleKey.DownArrow: if (kivalasztott_opcio < menupontok.Length - 1) kivalasztott_opcio++; break;
                     }
 
-                } while (lenyomott.Key != ConsoleKey.Enter);
+                } while (lenyomott.Key != ConsoleKey.Enter && lenyomott.Key != ConsoleKey.Escape);
 
-                switch (kivalasztott_opcio)
+                if (lenyomott.Key == ConsoleKey.Enter)
                 {
-                    case 0: KeszletKilistazasa(); break;
-                    case 1: TermekHozzaadasa(); break;
-                        /*case 3: TermekTorlese(); break;
-                        case 4: TermekModositsa(); break;
-                        case 5: Fileba(); break;*/
+                    switch (kivalasztott_opcio)
+                    {
+                        case 0: KeszletKilistazasa(); break;
+                        case 1: TermekHozzaadasa(); break;
+                        case 2: TermekTorlese(); break;
+                            /*case 4: TermekModositsa(); break;
+                            case 5: Fileba(); break;*/
+                    }
                 }
-            
+                
             } while (lenyomott.Key != ConsoleKey.Escape);
         }
 
         static void Main(string[] args)
         {
             StreamReader sr = new StreamReader("adatok.txt");
-            while (sr.EndOfStream)
+            while (!sr.EndOfStream)
             {
                 bool avul = false;
                 string sor = sr.ReadLine();
