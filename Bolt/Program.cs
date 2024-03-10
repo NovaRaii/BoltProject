@@ -36,7 +36,107 @@ namespace Bolt
 
             public int setId(int id) => this.id = id; public int getId() => this.id;
 
-            
+            public T getErtek<T>(string _melyik)
+            {
+                if (typeof(T) == typeof(string))
+                {
+                    if (_melyik == "nev")
+                    {
+                        return (T)(object)nev;
+                    } 
+                    else if (_melyik == "parameter")
+                    {
+                        return (T)(object)parameterek;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező string típusú kérés!");
+                    }
+                }
+                else if (typeof(T) == typeof(int))
+                {
+                    if (_melyik == "id")
+                    {
+                        return (T)(object)id;
+                    } 
+                    else if (_melyik == "ar")
+                    {
+                        return (T)(object)ar;
+                    } 
+                    else if (_melyik == "menyiseg")
+                    {
+                        return (T)(object)mennyiseg;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező int típusú kérés!");
+                    }
+                }
+                else if (typeof(T) == typeof(bool))
+                {
+                    if (_melyik == "elavulo")
+                    {
+                        return (T)(object)elavulo;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező bool típusú kérés!");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("nem létező típusú kérés!");
+                }
+            }
+
+            public void setErtek<T>(string _melyik, T ertek)
+            {
+                if (typeof(T) == typeof(string))
+                {
+                    if (_melyik == "nev")
+                    {
+                        nev = (string)(object)ertek;
+                    }
+                    else if (_melyik == "parameter")
+                    {
+                        parameterek = (string)(object)ertek;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező string típusú kérés!");
+                    }
+                }
+                else if (typeof(T) == typeof(int))
+                {
+                    if (_melyik == "ar")
+                    {
+                        ar = (int)(object)ertek;
+                    }
+                    else if (_melyik == "menyiseg")
+                    {
+                        mennyiseg = (int)(object)ertek;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező int típusú kérés!");
+                    }
+                }
+                else if (typeof(T) == typeof(bool))
+                {
+                    if (_melyik == "elavulo")
+                    {
+                        elavulo = (bool)(object)ertek;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("nem létező bool típusú kérés!");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("nem létező típusú kérés!");
+                }
+            }*/
 
         }
 
@@ -111,7 +211,7 @@ namespace Bolt
                     return null;
                 }
                 
-                if (ID == 10101010)
+                if (ID == -1)
                 {
                     return Convert.ToString(Adatok.Count - 1);
                 }
@@ -201,7 +301,14 @@ namespace Bolt
                 switch (kivalasztott)
                 {
                     case 0:
-                        Console.WriteLine($"régi érték: {Adatok[modositandoID]}");
+                        Console.WriteLine($"régi név: {Adatok[modositandoID].getErtek<string>("nev")}");
+                        Console.Write("Írja be az új nevét a terméknek:");
+                        string ujnev = Console.ReadLine();
+                        break;
+                    case 1: break;
+                    case 2: break;
+                    case 3: break;
+                    case 4: break;
                 }
                 return null;
             }
