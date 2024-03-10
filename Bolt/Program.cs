@@ -36,6 +36,8 @@ namespace Bolt
 
             public int setId(int id) => this.id = id; public int getId() => this.id;
 
+            
+
         }
 
 
@@ -157,7 +159,7 @@ namespace Bolt
             if (modositandoIDStrig != null)
             {
                 int modositandoID = Convert.ToInt16(modositandoIDStrig);
-                string[] opcio = { "nev", "leirás", "darabszám", "ár", "elavuló-e" };
+                string[] opcio = { "név ", "leirás ", "darabszám ", "ár ", "elavuló-e " };
                 ConsoleKeyInfo lenyomott;
                 int kivalasztott = 0;
                 do
@@ -171,21 +173,36 @@ namespace Bolt
                         if (kivalasztott == i)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(opcio[i]);
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write(opcio[i]);
                         }
+                        Console.Write(opcio[i]);
                     }
                     lenyomott = Console.ReadKey();
-                    if (lenyomott = )
+                    if (lenyomott.Key == ConsoleKey.RightArrow)
                     {
-
+                        if (kivalasztott > opcio.Length)
+                        {
+                            kivalasztott = -1;
+                        }
+                        kivalasztott++;
+                    } else if (lenyomott.Key == ConsoleKey.LeftArrow)
+                    {
+                        if (kivalasztott < 0)
+                        {
+                            kivalasztott = opcio.Length + 1;
+                        }
+                        kivalasztott--;
                     }
 
                 } while (lenyomott.Key != ConsoleKey.Enter);
+                switch (kivalasztott)
+                {
+                    case 0:
+                        Console.WriteLine($"régi érték: {Adatok[modositandoID]}");
+                }
                 return null;
             }
             else
