@@ -14,6 +14,22 @@ Hangfal;25600;22;Bluetooth kapcsolat, 20W teljesítmény;nem
 Videokártya;160000;7;NVIDIA RTX 3060, 12GB GDDR6 memória;igen
 Tápegység;19200;45;600W teljesítmény, 80 Plus Bronze minősítés;nem
 Hálózati adapter;6400;60;1000Mbps sebesség, plug-and-play;nem
+Memóriakártya;8000;50;MicroSDLaptop;nem
+Monitor;96000;25;24" Full HD, IPS panel;nem
+Grafikus tablet;64000;8;10" aktív érintőképernyő, 8192 nyomásérzékenység;igen
+Billentyűzet;16000;40;Vezetékes, háttérvilágítás, USB csatlakozás;nem
+Egér;9600;50;Optikai szenzor, 6 gomb, vezetékes;nem
+Fejhallgató;32000;20;Vezetékes, 7.1 surround hangzás, mikrofonnal;nem
+Nyomtató;48000;12;Lézeres, színes, vezeték nélküli;nem
+Router;25600;30;Dual-band, 4 Ethernet port, AC1200 sebesség;nem
+Számítógép alkatrész;22400;60;DDR4 RAM, 8GB;nem
+SSD meghajtó;32000;18;500GB kapacitás, SATA 3 csatlakozó;nem
+Webkamera;12800;35;Full HD felbontás, beépített mikrofon;nem
+Mobiltelefon;224000;10;6.5" OLED kijelző, 128GB tárhely, 5G támogatás;igen
+Hangfal;25600;22;Bluetooth kapcsolat, 20W teljesítmény;nem
+Videokártya;160000;7;NVIDIA RTX 3060, 12GB GDDR6 memória;igen
+Tápegység;19200;45;600W teljesítmény, 80 Plus Bronze minősítés;nem
+Hálózati adapter;6400;60;1000Mbps sebesség, plug-and-play;nem
 Memóriakártya;8000;50;MicroSD, 64GB kapacitás, UHS-I sebességosztály;nem
 Merevlemez;25600;28;2TB kapacitás, 7200 RPM, SATA 6Gb/s;nem
 Processzor;96000;15;Intel Core i9-9900K, 8 mag, 16 szál, 3.6GHz órajel;igen

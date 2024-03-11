@@ -103,7 +103,7 @@ namespace Bolt
                     }
                     else
                     {
-                        throw new ArgumentException("nem létező string típusú kérés!");
+                        throw new ArgumentException("nem létező string típusú feltöltés!");
                     }
                 }
                 else if (typeof(T) == typeof(int))
@@ -116,27 +116,27 @@ namespace Bolt
                     {
                         mennyiseg = (int)(object)ertek;
                     }
+                    else if (_melyik == "elavulo")
+                    {
+                        if (elavulo == true)
+                        {
+                            elavulo = false;
+                        }
+                        else
+                        {
+                            elavulo = true;
+                        }
+                    }
                     else
                     {
-                        throw new ArgumentException("nem létező int típusú kérés!");
-                    }
-                }
-                else if (typeof(T) == typeof(bool))
-                {
-                    if (_melyik == "elavulo")
-                    {
-                        elavulo = (bool)(object)ertek;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("nem létező bool típusú kérés!");
+                        throw new ArgumentException("nem létező int típusú feltöltés!");
                     }
                 }
                 else
                 {
-                    throw new ArgumentException("nem létező típusú kérés!");
+                    throw new ArgumentException("nem létező típusú feltöltés!");
                 }
-            }*/
+            }
 
         }
 
@@ -259,63 +259,108 @@ namespace Bolt
             if (modositandoIDStrig != null)
             {
                 int modositandoID = Convert.ToInt16(modositandoIDStrig);
-                string[] opcio = { "név ", "leirás ", "darabszám ", "ár ", "elavuló-e " };
+                string[] opcio = { "név |", "| leirás |", "| darabszám |", "| ár |", "| elavuló-e |", "| kilépés a módosításból" };
                 ConsoleKeyInfo lenyomott;
                 int kivalasztott = 0;
+                bool fut = false;
                 do
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Adatok[modositandoID].kiir();
-                    Console.WriteLine("Mit akar módosítani a kiválaszott elemen?");
-                    for (int i = 0; i < opcio.Length; i++)
+                    do
                     {
-                        if (kivalasztott == i)
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Adatok[modositandoID].kiir();
+                        Console.WriteLine("Mit akar módosítani a kiválaszott elemen?");
+                        for (int i = 0; i < opcio.Length; i++)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            if (kivalasztott == i)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            Console.Write(opcio[i]);
                         }
-                        else
+                        lenyomott = Console.ReadKey();
+                        if (lenyomott.Key == ConsoleKey.RightArrow)
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
+                            if (kivalasztott == opcio.Length - 1)
+                            {
+                                kivalasztott = -1;
+                            }
+                            kivalasztott++;
                         }
-                        Console.Write(opcio[i]);
-                    }
-                    lenyomott = Console.ReadKey();
-                    if (lenyomott.Key == ConsoleKey.RightArrow)
-                    {
-                        if (kivalasztott > opcio.Length)
+                        else if (lenyomott.Key == ConsoleKey.LeftArrow)
                         {
-                            kivalasztott = -1;
+                            if (kivalasztott < 1)
+                            {
+                                kivalasztott = opcio.Length;
+                            }
+                            kivalasztott--;
                         }
-                        kivalasztott++;
-                    } else if (lenyomott.Key == ConsoleKey.LeftArrow)
-                    {
-                        if (kivalasztott < 0)
-                        {
-                            kivalasztott = opcio.Length + 1;
-                        }
-                        kivalasztott--;
-                    }
 
-                } while (lenyomott.Key != ConsoleKey.Enter);
-                switch (kivalasztott)
-                {
-                    case 0:
-                        Console.WriteLine($"régi név: {Adatok[modositandoID].getErtek<string>("nev")}");
-                        Console.Write("Írja be az új nevét a terméknek:");
-                        string ujnev = Console.ReadLine();
-                        break;
-                    case 1: break;
-                    case 2: break;
-                    case 3: break;
-                    case 4: break;
-                }
+                    } while (lenyomott.Key != ConsoleKey.Enter);
+                        switch (kivalasztott)
+                        {
+                            case 0:
+                                Console.Clear();
+                                Console.WriteLine($"régi név: {Adatok[modositandoID].getErtek<string>("nev")}");
+                                Console.Write("Írja be az új nevét a terméknek:");
+                                string ujnev = Console.ReadLine();
+                                Adatok[modositandoID].setErtek<string>("nev", ujnev);
+                                break;
+                            case 1:
+                                Console.Clear();
+                                Console.WriteLine($"régi leírás: {Adatok[modositandoID].getErtek<string>("parameter")}");
+                                Console.Write("Írja be az új leírását a terméknek:");
+                                string ujleiras = Console.ReadLine();
+                                Adatok[modositandoID].setErtek<string>("parameter", ujleiras);
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.WriteLine($"régi darabszám: {Adatok[modositandoID].getErtek<int>("menyiseg")}");
+                                Console.Write("Írja be az új darabszámát a terméknek:");
+                                int ujdarabszam = Convert.ToInt16(Console.ReadLine());
+                                Adatok[modositandoID].setErtek<int>("menyiseg", ujdarabszam);
+                                break;
+                            case 3:
+                                Console.Clear();
+                                Console.WriteLine($"régi ár: {Adatok[modositandoID].getErtek<int>("ar")}");
+                                Console.Write("Írja be az új árát a terméknek:");
+                                int ujar = Convert.ToInt16(Console.ReadLine());
+                                Adatok[modositandoID].setErtek<int>("ar", ujar);
+                                break;
+                            case 4:
+                                Adatok[modositandoID].setErtek<int>("elavulo", 1);
+                                break;
+                            case 5:
+                                fut = true;
+                                break;
+                        }
+                } while (!fut);
                 return null;
             }
             else
             {
                 return null;
             }
+        }
+
+        static void Fileba()
+        {
+            StreamWriter r = new StreamWriter("adatok.txt");
+            for (int i = 0; i < Adatok.Count; i++)
+            {
+                string elavuloki = "nem";
+                if (Adatok[i].getErtek<bool>("elavulo"))
+                {
+                    elavuloki = "igen";
+                }
+                r.WriteLine($"{Adatok[i].getErtek<string>("nev")};{Adatok[i].getErtek<int>("ar")};{Adatok[i].getErtek<int>("menyiseg")};{Adatok[i].getErtek<string>("parameter")};{elavuloki}");
+            }
+            r.Close();
         }
 
         static void Menu()
@@ -344,6 +389,7 @@ namespace Bolt
                         }
                         Console.WriteLine(i + 1 + ")" + menupontok[i]);
                     }
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("(Kilépés - Esc)");
 
                     lenyomott = Console.ReadKey();
@@ -352,6 +398,7 @@ namespace Bolt
                         case ConsoleKey.UpArrow: if (kivalasztott_opcio > 0) kivalasztott_opcio--; break;
                         case ConsoleKey.DownArrow: if (kivalasztott_opcio < menupontok.Length - 1) kivalasztott_opcio++; break;
                     }
+
 
                 } while (lenyomott.Key != ConsoleKey.Enter && lenyomott.Key != ConsoleKey.Escape);
 
@@ -363,10 +410,9 @@ namespace Bolt
                         case 1: TermekHozzaadasa(); break;
                         case 2: TermekTorlese(); break;
                         case 3: TermekModositsa(); break;
-                        //case 5: Fileba(); break;
+                        case 4: Fileba(); break;
                     }
                 }
-                
             } while (lenyomott.Key != ConsoleKey.Escape);
         }
 
