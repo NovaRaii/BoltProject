@@ -149,6 +149,12 @@ namespace Bolt
             Console.Clear();
             for (int i = 0; i < Adatok.Count; i++)
             {
+                if (Adatok[i].getErtek<int>("menyiseg") < 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Adatok[i].kiir();
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 Adatok[i].kiir();
             }
             Console.ReadKey();
@@ -363,9 +369,22 @@ namespace Bolt
             r.Close();
         }
 
+        static void LearazottKilistazas()
+        {
+            Console.Clear();
+            for (int i = 0; i < Adatok.Count; i++)
+            {
+                if (Adatok[i].getErtek<bool>("elavulo"))
+                {
+                    Adatok[i].kiir();
+                }
+            }
+            Console.ReadKey();
+        }
+
         static void Menu()
         {
-            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "File-ba írás" };
+            string[] menupontok = { "Készlet kilistázása", "Termék hozzáadása", "Termék törlése", "Termék módosítása", "Learazott áruk kilistázása", "File-ba írás" };
 
             
             ConsoleKeyInfo lenyomott;
@@ -410,7 +429,8 @@ namespace Bolt
                         case 1: TermekHozzaadasa(); break;
                         case 2: TermekTorlese(); break;
                         case 3: TermekModositsa(); break;
-                        case 4: Fileba(); break;
+                        case 4: LearazottKilistazas(); break;
+                        case 5: Fileba(); break;
                     }
                 }
             } while (lenyomott.Key != ConsoleKey.Escape);
