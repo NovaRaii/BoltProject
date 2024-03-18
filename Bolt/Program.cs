@@ -160,12 +160,16 @@ namespace Bolt
             Console.ReadKey();
         }
 
-        public static void TermekHozzaadasa()
+        public static string TermekHozzaadasa()
         {
             Console.Clear();
-            Console.WriteLine("Termék hozzáadása\nÍrja be a termék paramétereit:");
+            Console.WriteLine("Termék hozzáadása\nÍrja be a termék paramétereit (Kilépés - k):");
             Console.Write(" A termék neve:");
             string termekNeve = Console.ReadLine();
+            if (termekNeve == "k")
+            {
+                return null;
+            }
             Console.Write(" A termék ára:");
             int termekAra = Convert.ToInt32(Console.ReadLine());
             Console.Write(" Az árusítani kívánt mennyiség:");
@@ -198,6 +202,7 @@ namespace Bolt
             Eszkozok eszkot = new Eszkozok(termekNeve, termekAra, mennyiseg, leiras, elavulo);
             eszkot.setId(id);
             Adatok.Add(eszkot);
+            return null;
         }
 
         static string TermekIDtKeres(string muvelet)
